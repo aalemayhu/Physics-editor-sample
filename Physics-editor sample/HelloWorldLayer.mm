@@ -174,7 +174,7 @@ enum {
         [self startTest1]; 
     }];
     
-    CCMenuItemLabel *testTwo = [CCMenuItemFont itemWithString:@"Vial test" block:^(id sender) {
+    CCMenuItemLabel *testTwo = [CCMenuItemFont itemWithString:@"Big bodies" block:^(id sender) {
         [self startTest2]; 
     }];
 	
@@ -189,12 +189,13 @@ enum {
 -(void) startTest1 {
     
     //Choose one of the tetromino files.
-    NSString *img = [NSString stringWithFormat:@"block%d.png", (arc4random()%2)+1];
+    NSString *img = [NSString stringWithFormat:@"block%d.png", (arc4random()%7)+1];
     PhysicsSprite *sprite = [PhysicsSprite spriteWithFile:img];
     
     CGSize winSize = [[CCDirector sharedDirector] winSize];    
     CGPoint p = ccp(winSize.width/2, winSize.height - (sprite.contentSize.height * 0.80));
     sprite.position = ccp(p.x, p.y);
+
     [sprite setOpacity:128];
     [self addChild:sprite];
     
@@ -208,29 +209,31 @@ enum {
     b2Body *body = world->CreateBody(&bodyDef);
     
     //Init the FixtureAltas with the xml file
-    FixtureAtlas *fixtureAtlas = [FixtureAtlas withFile:@"test_2.xml"];    
+    FixtureAtlas *fixtureAtlas = [FixtureAtlas withFile:@"test_2.xml"];
     //Create our fixtures
     [fixtureAtlas createFixturesWithBody:body assetName:img width:sprite.contentSize.width/PTM_RATIO
-                                  height:sprite.contentSize.height/PTM_RATIO fixtureDef:NULL];      
+                                  height:sprite.contentSize.height/PTM_RATIO fixtureDef:NULL];    
     [sprite setPhysicsBody:body];
 }
 
 -(void) startTest2 {
     
-    NSString *img = @"test01.png";
+    NSArray *images = [NSArray arrayWithObjects:@"test01.png", @"test02 (non POT).png", @"test03 (multi shapes).png", nil];
+    NSUInteger rnd = (arc4random() % 3);
+    NSString *img = [images objectAtIndex:rnd];
+    
     PhysicsSprite *sprite = [PhysicsSprite spriteWithFile:img];
     
     CGSize winSize = [[CCDirector sharedDirector] winSize];    
-    CGPoint p = ccp(winSize.width/2, (winSize.height/2) - (sprite.contentSize.height/2));
     
     [sprite setOpacity:128];
-    sprite.position = p;
+    sprite.position = ccp((winSize.width/2)/PTM_RATIO, (winSize.height/2)/PTM_RATIO);
     [self addChild:sprite z:-10];
     
     //Define our body
     b2BodyDef bodyDef;        
     bodyDef.type = b2_staticBody;
-    bodyDef.position.Set(p.x/PTM_RATIO, p.y/PTM_RATIO);
+    bodyDef.position.Set((winSize.width/2)/PTM_RATIO, (winSize.height/2)/PTM_RATIO);
     bodyDef.userData = sprite;    
     
     //Create the body
@@ -247,17 +250,16 @@ enum {
 }
 
 -(void) addballs{
-    
+
     CGSize winSize = [[CCDirector sharedDirector] winSize];
-    CGPoint p = ccp(winSize.width - 110, winSize.height-30); 
     
     PhysicsSprite *ball = [PhysicsSprite spriteWithFile:@"ball.png"];
-    ball.position = ccp( p.x, p.y);
+    ball.position = ccp( winSize.width/2, winSize.height-30 );
 	[self addChild:ball];
     
 	b2BodyDef bodyDef;
-	bodyDef.type = b2_dynamicBody;
-	bodyDef.position.Set(p.x/PTM_RATIO, p.y/PTM_RATIO);
+	bodyDef.type = b2_dynamicBody;//
+	bodyDef.position.Set((winSize.width/2)/PTM_RATIO, (winSize.height-30)/PTM_RATIO);
 	b2Body *body = world->CreateBody(&bodyDef);
     
     b2CircleShape circleShape;
