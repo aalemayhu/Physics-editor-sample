@@ -22,6 +22,7 @@ enum {
 -(void) createMenu;
 -(void) startTest1;
 -(void) startTest2;
+-(void) startTest3;
 -(void) addballs;
 @end
 
@@ -177,8 +178,12 @@ enum {
     CCMenuItemLabel *testTwo = [CCMenuItemFont itemWithString:@"Big bodies" block:^(id sender) {
         [self startTest2]; 
     }];
+    
+    CCMenuItemLabel *testThree = [CCMenuItemFont itemWithString:@"Multiple bodies" block:^(id sender) {
+        [self startTest3]; 
+    }];
 	
-	CCMenu *menu = [CCMenu menuWithItems: testOne, testTwo, reset, nil];	
+	CCMenu *menu = [CCMenu menuWithItems: testOne, testTwo, testThree, reset, nil];	
 	[menu alignItemsVertically];
 	
 	CGSize size = [[CCDirector sharedDirector] winSize];
@@ -218,8 +223,8 @@ enum {
 
 -(void) startTest2 {
     
-    NSArray *images = [NSArray arrayWithObjects:@"test01.png", @"test02 (non POT).png", @"test03 (multi shapes).png", nil];
-    NSUInteger rnd = (arc4random() % 3);
+    NSArray *images = [NSArray arrayWithObjects:@"test01.png", @"test02 (non POT).png", nil];
+    NSUInteger rnd = (arc4random() % 2);
     NSString *img = [images objectAtIndex:rnd];
     
     PhysicsSprite *sprite = [PhysicsSprite spriteWithFile:img];
@@ -247,6 +252,35 @@ enum {
     [sprite setPhysicsBody:body];
     
     [self schedule:@selector(addballs) interval:0.5 repeat:60 delay:2.0];
+}
+
+-(void) startTest3 {
+    
+    NSString *img = @"test03 (multi shapes).png";
+    
+    PhysicsSprite *sprite = [PhysicsSprite spriteWithFile:img];
+    
+    CGSize winSize = [[CCDirector sharedDirector] winSize];    
+    
+    [sprite setOpacity:128];
+    sprite.position = ccp((winSize.width/2)/PTM_RATIO, (winSize.height/2)/PTM_RATIO);
+    [self addChild:sprite z:-10];
+    
+    //Define our body
+    b2BodyDef bodyDef;        
+    bodyDef.type = b2_staticBody;
+    bodyDef.position.Set((winSize.width/2)/PTM_RATIO, (winSize.height/2)/PTM_RATIO);
+    bodyDef.userData = sprite;    
+    
+    //Create the body
+    b2Body *body = world->CreateBody(&bodyDef);
+    
+    FixtureAtlas *fixtureAtlas = [FixtureAtlas withFile:@"bodies.xml"];    
+    //Create our fixtures
+    [fixtureAtlas createFixturesWithBody:body assetName:img width:sprite.contentSize.width/PTM_RATIO
+                                  height:sprite.contentSize.height/PTM_RATIO fixtureDef:NULL];  
+    
+    [sprite setPhysicsBody:body];
 }
 
 -(void) addballs{
