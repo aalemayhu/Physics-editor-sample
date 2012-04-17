@@ -251,7 +251,8 @@ enum {
     
     [sprite setPhysicsBody:body];
     
-    [self schedule:@selector(addballs) interval:0.5 repeat:60 delay:2.0];
+    if ([img isEqualToString:@"test01.png"])
+        [self schedule:@selector(addballs) interval:0.5 repeat:60 delay:2.0];   
 }
 
 -(void) startTest3 {
