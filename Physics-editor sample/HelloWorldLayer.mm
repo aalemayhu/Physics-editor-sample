@@ -22,6 +22,7 @@ enum {
 -(void) createMenu;
 -(void) startTest1;
 -(void) startTest2;
+-(void) addballs;
 @end
 
 //REMINDER: Images that are 32x32 or smaller won't work properly with the FixtureAtlas. 
@@ -83,6 +84,26 @@ enum {
 	world->Step(dt, velocityIterations, positionIterations);	
 }
 
+-(void) draw
+{
+	//
+	// IMPORTANT:
+	// This is only for debug purposes
+	// It is recommend to disable it
+	//
+	[super draw];
+	
+	ccGLEnableVertexAttribs( kCCVertexAttribFlag_Position );
+	
+	kmGLPushMatrix();
+	
+	world->DrawDebugData();	
+	
+	kmGLPopMatrix();
+}
+
+#pragma mark - Private methods
+
 -(void) initPhysics
 {	
 	CGSize s = [[CCDirector sharedDirector] winSize];
@@ -101,8 +122,8 @@ enum {
 	
 	uint32 flags = 0;
 	flags += b2Draw::e_shapeBit;
-    //	flags += b2Draw::e_jointBit;
-    //	flags += b2Draw::e_aabbBit;
+    flags += b2Draw::e_jointBit;
+    flags += b2Draw::e_aabbBit;
     //	flags += b2Draw::e_pairBit;
     //	flags += b2Draw::e_centerOfMassBit;
 	m_debugDraw->SetFlags(flags);		
@@ -139,8 +160,8 @@ enum {
 
 -(void) createMenu
 {
-    CCLayerColor *bgColor = [CCLayerColor layerWithColor:ccc4(0,255,0,128)];
-    [self addChild:bgColor z:-100];
+    //    CCLayerColor *bgColor = [CCLayerColor layerWithColor:ccc4(0,255,0,128)];
+    //    [self addChild:bgColor z:-100];
     
 	// Default font size will be 22 points.
 	[CCMenuItemFont setFontSize:22];
@@ -150,7 +171,7 @@ enum {
 	}];
     
     CCMenuItemLabel *testOne = [CCMenuItemFont itemWithString:@"Tetrominoes" block:^(id sender) {
-         [self startTest1]; 
+        [self startTest1]; 
     }];
     
     CCMenuItemLabel *testTwo = [CCMenuItemFont itemWithString:@"Vial test" block:^(id sender) {
@@ -166,14 +187,15 @@ enum {
 }
 
 -(void) startTest1 {
-        
+    
     //Choose one of the tetromino files.
     NSString *img = [NSString stringWithFormat:@"block%d.png", (arc4random()%2)+1];
     PhysicsSprite *sprite = [PhysicsSprite spriteWithFile:img];
-
+    
     CGSize winSize = [[CCDirector sharedDirector] winSize];    
     CGPoint p = ccp(winSize.width/2, winSize.height - (sprite.contentSize.height * 0.80));
     sprite.position = ccp(p.x, p.y);
+    [sprite setOpacity:128];
     [self addChild:sprite];
     
     //Define our body
@@ -194,13 +216,14 @@ enum {
 }
 
 -(void) startTest2 {
-
+    
     NSString *img = @"test01.png";
     PhysicsSprite *sprite = [PhysicsSprite spriteWithFile:img];
     
     CGSize winSize = [[CCDirector sharedDirector] winSize];    
     CGPoint p = ccp(winSize.width/2, (winSize.height/2) - (sprite.contentSize.height/2));
-
+    
+    [sprite setOpacity:128];
     sprite.position = p;
     [self addChild:sprite z:-10];
     
@@ -220,11 +243,11 @@ enum {
     
     [sprite setPhysicsBody:body];
     
-    [self schedule:@selector(addballs:) interval:0.5 repeat:60 delay:2.0];
+    [self schedule:@selector(addballs) interval:0.5 repeat:60 delay:2.0];
 }
 
--(void) addballs:(ccTime) dt{
-        
+-(void) addballs{
+    
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     CGPoint p = ccp(winSize.width - 110, winSize.height-30); 
     
