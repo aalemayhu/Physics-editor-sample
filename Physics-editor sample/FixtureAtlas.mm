@@ -97,12 +97,12 @@
         
         CGFloat x = [[attributeDict objectForKey:@"x"] floatValue];
         CGFloat y = [[attributeDict objectForKey:@"y"] floatValue];
-                
+
         x *= bodyWidth / 100.0f;
         y *= bodyHeight / 100.0f;
         
-        verts[vindex].x = x;// - 0.5f;
-        verts[vindex].y = y;// - 0.5f;
+        verts[vindex].x = x - (bodyWidth / 2);
+        verts[vindex].y = y - (bodyHeight / 2);
         
         shouldGetPolygon = NO;
         vindex++;        
