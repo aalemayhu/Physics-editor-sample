@@ -50,8 +50,8 @@ enum {
 		self.isTouchEnabled = YES;
 		self.isAccelerometerEnabled = YES;
 		
+        [self createMenu];
 		[self initPhysics];		        
-		[self createMenu];
 		[self scheduleUpdate];
 	}
 	return self;
