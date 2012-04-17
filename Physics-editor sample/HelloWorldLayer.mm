@@ -175,11 +175,11 @@ enum {
         [self startTest1]; 
     }];
     
-    CCMenuItemLabel *testTwo = [CCMenuItemFont itemWithString:@"Big bodies" block:^(id sender) {
+    CCMenuItemLabel *testTwo = [CCMenuItemFont itemWithString:@"Big shapes" block:^(id sender) {
         [self startTest2]; 
     }];
     
-    CCMenuItemLabel *testThree = [CCMenuItemFont itemWithString:@"Multiple bodies" block:^(id sender) {
+    CCMenuItemLabel *testThree = [CCMenuItemFont itemWithString:@"Multiple shapes" block:^(id sender) {
         [self startTest3]; 
     }];
 	
