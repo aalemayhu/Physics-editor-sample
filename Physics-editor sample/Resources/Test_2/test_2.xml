@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assets>
+    <asset relativePath="block1.png">
+        <shape>
+            <vertex x="0.78124404" y="100.78125"/>
+            <vertex x="0.78124404" y="3.125003"/>
+            <vertex x="99.41406" y="3.125003"/>
+            <vertex x="99.41406" y="100.78125"/>
+        </shape>
+        <polygon>
+            <vertex x="0.78124404" y="100.78125"/>
+            <vertex x="0.78124404" y="3.125003"/>
+            <vertex x="99.41406" y="3.125003"/>
+            <vertex x="99.41406" y="100.78125"/>
+        </polygon>
+    </asset>
+    <asset relativePath="block2.png">
+        <shape>
+            <vertex x="1.5624961" y="96.093765"/>
+            <vertex x="1.0416667" y="-0.78125596"/>
+            <vertex x="98.69792" y="0.0"/>
+            <vertex x="99.21875" y="50.78124"/>
+            <vertex x="32.291664" y="50.78124"/>
+            <vertex x="33.59375" y="102.34377"/>
+        </shape>
+        <polygon>
+            <vertex x="32.291664" y="50.78124"/>
+            <vertex x="33.59375" y="102.34377"/>
+            <vertex x="1.5624961" y="96.093765"/>
+            <vertex x="1.0416667" y="-0.78125596"/>
+        </polygon>
+        <polygon>
+            <vertex x="1.0416667" y="-0.78125596"/>
+            <vertex x="98.69792" y="0.0"/>
+            <vertex x="99.21875" y="50.78124"/>
+            <vertex x="32.291664" y="50.78124"/>
+        </polygon>
+    </asset>
+    <asset relativePath="block3.png">
+        <shape>
+            <vertex x="-0.2604167" y="50.78124"/>
+            <vertex x="-0.2604167" y="0.0"/>
+            <vertex x="99.21875" y="0.7812381"/>
+            <vertex x="99.21875" y="99.21875"/>
+            <vertex x="66.40624" y="99.21875"/>
+            <vertex x="66.40624" y="52.34375"/>
+        </shape>
+        <polygon>
+            <vertex x="66.40624" y="52.34375"/>
+            <vertex x="-0.2604167" y="50.78124"/>
+            <vertex x="-0.2604167" y="0.0"/>
+            <vertex x="99.21875" y="0.7812381"/>
+        </polygon>
+        <polygon>
+            <vertex x="99.21875" y="0.7812381"/>
+            <vertex x="99.21875" y="99.21875"/>
+            <vertex x="66.40624" y="99.21875"/>
+            <vertex x="66.40624" y="52.34375"/>
+        </polygon>
+    </asset>
+</assets>
