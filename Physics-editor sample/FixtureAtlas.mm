@@ -79,6 +79,14 @@
         NSString *msg = [NSString stringWithFormat:@"%@ was not found", assetName];
         [NSException raise:@"Missing file." format:msg, nil];
     }    
+    
+    //Did we use all the vertices?
+    if (vindex > 0) {
+        shape->Set(verts, vindex);
+        fd->shape = shape;
+        theBody->CreateFixture(fd);
+        vindex = 0;
+    }
 }
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName 
