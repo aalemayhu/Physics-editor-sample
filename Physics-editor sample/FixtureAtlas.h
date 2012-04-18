@@ -32,6 +32,9 @@
 +(FixtureAtlas *) withFile:(NSString *) xmlFile;
 -(id) initWithFile:(NSString *)xmlFile;
 
--(void) createFixturesWithBody:(b2Body *) body assetName:(NSString *) name width:(float)w height:(float)h fixtureDef:(b2FixtureDef *)params;
-
+-(void) createFixturesWithBody:(b2Body *) body 
+                     assetName:(NSString *) name 
+                         width:(float)w 
+                        height:(float)h 
+                    fixtureDef:(b2FixtureDef *)params;
 @end
