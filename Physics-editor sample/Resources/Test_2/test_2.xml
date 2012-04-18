@@ -2,74 +2,60 @@
 <assets>
     <asset relativePath="block1.png">
         <shape>
-            <vertex x="0.78124404" y="100.78125"/>
-            <vertex x="0.78124404" y="3.125003"/>
-            <vertex x="99.41406" y="3.125003"/>
-            <vertex x="99.41406" y="100.78125"/>
+            <vertex x="0.0" y="0.0"/>
+            <vertex x="0.0" y="100.0"/>
+            <vertex x="100.0" y="100.0"/>
+            <vertex x="100.0" y="0.0"/>
         </shape>
         <polygon>
-            <vertex x="0.78124404" y="100.78125"/>
-            <vertex x="0.78124404" y="3.125003"/>
-            <vertex x="99.41406" y="3.125003"/>
-            <vertex x="99.41406" y="100.78125"/>
+            <vertex x="100.0" y="0.0"/>
+            <vertex x="100.0" y="100.0"/>
+            <vertex x="0.0" y="100.0"/>
+            <vertex x="0.0" y="0.0"/>
         </polygon>
     </asset>
     <asset relativePath="block2.png">
         <shape>
-            <vertex x="0.2604167" y="100.390625"/>
-            <vertex x="0.2604167" y="0.390625"/>
-            <vertex x="100.13021" y="0.390625"/>
-            <vertex x="100.13021" y="51.171883"/>
-            <vertex x="33.88889" y="51.041668"/>
-            <vertex x="33.88889" y="100.26043"/>
+            <vertex x="0.0" y="0.0"/>
+            <vertex x="0.0" y="100.0"/>
+            <vertex x="33.333336" y="100.0"/>
+            <vertex x="33.333336" y="50.0"/>
+            <vertex x="100.0" y="50.0"/>
+            <vertex x="100.0" y="0.0"/>
         </shape>
         <polygon>
-            <vertex x="33.88889" y="51.041668"/>
-            <vertex x="33.88889" y="100.26043"/>
-            <vertex x="0.2604167" y="100.390625"/>
-            <vertex x="0.2604167" y="0.390625"/>
+            <vertex x="33.333336" y="50.0"/>
+            <vertex x="33.333336" y="100.0"/>
+            <vertex x="0.0" y="100.0"/>
+            <vertex x="0.0" y="0.0"/>
         </polygon>
         <polygon>
-            <vertex x="0.2604167" y="0.390625"/>
-            <vertex x="100.13021" y="0.390625"/>
-            <vertex x="100.13021" y="51.171883"/>
-            <vertex x="33.88889" y="51.041668"/>
+            <vertex x="0.0" y="0.0"/>
+            <vertex x="100.0" y="0.0"/>
+            <vertex x="100.0" y="50.0"/>
+            <vertex x="33.333336" y="50.0"/>
         </polygon>
     </asset>
     <asset relativePath="block3.png">
         <shape>
-            <vertex x="0.0" y="52.34375"/>
-            <vertex x="0.0" y="-0.390625"/>
-            <vertex x="99.21875" y="-0.390625"/>
-            <vertex x="99.21875" y="99.21875"/>
-            <vertex x="66.40624" y="99.21875"/>
-            <vertex x="66.40624" y="52.34375"/>
+            <vertex x="100.0" y="0.0"/>
+            <vertex x="100.0" y="100.0"/>
+            <vertex x="66.66667" y="100.0"/>
+            <vertex x="66.66667" y="50.0"/>
+            <vertex x="0.0" y="50.0"/>
+            <vertex x="0.0" y="0.0"/>
         </shape>
         <polygon>
-            <vertex x="66.40624" y="99.21875"/>
-            <vertex x="66.40624" y="52.34375"/>
-            <vertex x="99.21875" y="-0.390625"/>
-            <vertex x="99.21875" y="99.21875"/>
+            <vertex x="66.66667" y="50.0"/>
+            <vertex x="0.0" y="50.0"/>
+            <vertex x="0.0" y="0.0"/>
+            <vertex x="100.0" y="0.0"/>
         </polygon>
         <polygon>
-            <vertex x="66.40624" y="52.34375"/>
-            <vertex x="0.0" y="52.34375"/>
-            <vertex x="0.0" y="-0.390625"/>
-            <vertex x="99.21875" y="-0.390625"/>
-        </polygon>
-    </asset>
-    <asset relativePath="block4.png">
-        <shape>
-            <vertex x="-5.9604645E-6" y="100.390625"/>
-            <vertex x="-5.9604645E-6" y="-0.390625"/>
-            <vertex x="100.78125" y="-0.390625"/>
-            <vertex x="100.78125" y="100.390625"/>
-        </shape>
-        <polygon>
-            <vertex x="-5.9604645E-6" y="100.390625"/>
-            <vertex x="-5.9604645E-6" y="-0.390625"/>
-            <vertex x="100.78125" y="-0.390625"/>
-            <vertex x="100.78125" y="100.390625"/>
+            <vertex x="100.0" y="0.0"/>
+            <vertex x="100.0" y="100.0"/>
+            <vertex x="66.66667" y="100.0"/>
+            <vertex x="66.66667" y="50.0"/>
         </polygon>
     </asset>
     <asset relativePath="block5.png">
@@ -155,6 +141,20 @@
             <vertex x="100.00001" y="0.1953125"/>
             <vertex x="100.00001" y="50.976562"/>
             <vertex x="66.53647" y="50.976562"/>
+        </polygon>
+    </asset>
+    <asset relativePath="block4.png">
+        <shape>
+            <vertex x="0.0" y="0.0"/>
+            <vertex x="0.0" y="100.0"/>
+            <vertex x="100.0" y="100.0"/>
+            <vertex x="100.0" y="0.0"/>
+        </shape>
+        <polygon>
+            <vertex x="100.0" y="0.0"/>
+            <vertex x="100.0" y="100.0"/>
+            <vertex x="0.0" y="100.0"/>
+            <vertex x="0.0" y="0.0"/>
         </polygon>
     </asset>
 </assets>
