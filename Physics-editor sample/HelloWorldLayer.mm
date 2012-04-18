@@ -24,6 +24,10 @@ enum {
 -(void) startTest2;
 -(void) startTest3;
 -(void) addballs;
+-(void) addFixturesToBody:(b2Body *)body 
+                  xmlFile:(NSString *)xmlFile 
+                assetName:(NSString *)img 
+                   sprite:(PhysicsSprite *)sprite;
 @end
 
 //REMINDER: Images that are 32x32 or smaller won't work properly with the FixtureAtlas. 
@@ -200,7 +204,7 @@ enum {
     CGSize winSize = [[CCDirector sharedDirector] winSize];    
     CGPoint p = ccp(winSize.width/2, winSize.height - (sprite.contentSize.height * 0.80));
     sprite.position = ccp(p.x, p.y);
-
+    
     [sprite setOpacity:128];
     [self addChild:sprite];
     
@@ -213,11 +217,13 @@ enum {
     //Create the body
     b2Body *body = world->CreateBody(&bodyDef);
     
-    //Init the FixtureAltas with the xml file
-    FixtureAtlas *fixtureAtlas = [FixtureAtlas withFile:@"test_2.xml"];
-    //Create our fixtures
-    [fixtureAtlas createFixturesWithBody:body assetName:img width:sprite.contentSize.width/PTM_RATIO
-                                  height:sprite.contentSize.height/PTM_RATIO fixtureDef:NULL];    
+    NSString *xmlFile = @"test_2.xml";    
+    
+    [self addFixturesToBody:body 
+                    xmlFile:xmlFile 
+                  assetName:img 
+                     sprite:sprite]; 
+    
     [sprite setPhysicsBody:body];
 }
 
@@ -244,15 +250,20 @@ enum {
     //Create the body
     b2Body *body = world->CreateBody(&bodyDef);
     
-    FixtureAtlas *fixtureAtlas = [FixtureAtlas withFile:@"bodies.xml"];    
-    //Create our fixtures
-    [fixtureAtlas createFixturesWithBody:body assetName:img width:sprite.contentSize.width/PTM_RATIO
-                                  height:sprite.contentSize.height/PTM_RATIO fixtureDef:NULL];  
+    NSString *xmlFile = @"bodies.xml";    
+    [self addFixturesToBody:body 
+                    xmlFile:xmlFile 
+                  assetName:img 
+                     sprite:sprite];   
     
     [sprite setPhysicsBody:body];
     
-    if ([img isEqualToString:@"test01.png"])
-        [self schedule:@selector(addballs) interval:0.5 repeat:60 delay:2.0];   
+    if ([img isEqualToString:@"test01.png"]) {
+        [self schedule:@selector(addballs) 
+              interval:0.5 
+                repeat:60 
+                 delay:2.0];   
+    }
 }
 
 -(void) startTest3 {
@@ -276,16 +287,32 @@ enum {
     //Create the body
     b2Body *body = world->CreateBody(&bodyDef);
     
-    FixtureAtlas *fixtureAtlas = [FixtureAtlas withFile:@"bodies.xml"];    
-    //Create our fixtures
-    [fixtureAtlas createFixturesWithBody:body assetName:img width:sprite.contentSize.width/PTM_RATIO
-                                  height:sprite.contentSize.height/PTM_RATIO fixtureDef:NULL];  
+    NSString *xmlFile = @"bodies.xml";
+    [self addFixturesToBody:body 
+                    xmlFile:xmlFile 
+                  assetName:img 
+                     sprite:sprite];    
     
     [sprite setPhysicsBody:body];
 }
 
--(void) addballs{
+-(void) addFixturesToBody:(b2Body *)body 
+                  xmlFile:(NSString *)xmlFile 
+                assetName:(NSString *)img 
+                   sprite:(PhysicsSprite *)sprite {
+    
+    //Init the FixtureAltas with the xml file
+    FixtureAtlas *fixtureAtlas = [FixtureAtlas withFile:xmlFile];    
+    //Create our fixtures
+    [fixtureAtlas createFixturesWithBody:body 
+                               assetName:img 
+                                   width:sprite.contentSize.width/PTM_RATIO
+                                  height:sprite.contentSize.height/PTM_RATIO 
+                              fixtureDef:NULL];  
+}
 
+-(void) addballs{
+    
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     
     PhysicsSprite *ball = [PhysicsSprite spriteWithFile:@"ball.png"];

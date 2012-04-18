@@ -26,7 +26,8 @@
         
         NSAssert1(xmlFile != nil, @"Invalid file: %@", xmlFile);
         
-        parser = [[NSXMLParser alloc] initWithData:[self getXMLFile:xmlFile]];
+        NSData *data = [self getXMLFile:xmlFile];
+        parser = [[NSXMLParser alloc] initWithData:data];
         [parser setDelegate:self];  
     }
     
@@ -41,8 +42,11 @@
     return xmlData;
 }
 
--(void) createFixturesWithBody:(b2Body *)body assetName:(NSString *)name 
-                         width:(float)w height:(float)h fixtureDef:(b2FixtureDef *)params{
+-(void) createFixturesWithBody:(b2Body *)body 
+                     assetName:(NSString *)name 
+                         width:(float)w 
+                        height:(float)h 
+                    fixtureDef:(b2FixtureDef *)params{
     
     vindex = 0;
     pathWasFound = NO;
@@ -72,11 +76,15 @@
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
     
     if (!pathWasFound) {
-        [NSException raise:@"Missing file." format:[NSString stringWithFormat:@"%@ was not found", assetName], nil];
+        NSString *msg = [NSString stringWithFormat:@"%@ was not found", assetName];
+        [NSException raise:@"Missing file." format:msg, nil];
     }    
 }
 
-- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict{
+- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName 
+  namespaceURI:(NSString *)namespaceURI 
+ qualifiedName:(NSString *)qName 
+    attributes:(NSDictionary *)attributeDict {
     
     if ([elementName isEqualToString:@"asset"]) {        
         NSString *relativePath = [attributeDict objectForKey:@"relativePath"];      
@@ -97,7 +105,7 @@
         
         CGFloat x = [[attributeDict objectForKey:@"x"] floatValue];
         CGFloat y = [[attributeDict objectForKey:@"y"] floatValue];
-
+        
         x *= bodyWidth / 100.0f;
         y *= bodyHeight / 100.0f;
         
