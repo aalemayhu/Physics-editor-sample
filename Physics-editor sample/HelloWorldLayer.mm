@@ -30,7 +30,6 @@ enum {
                    sprite:(PhysicsSprite *)sprite;
 @end
 
-//REMINDER: Images that are 32x32 or smaller won't work properly with the FixtureAtlas. 
 @implementation HelloWorldLayer
 
 +(CCScene *) scene
