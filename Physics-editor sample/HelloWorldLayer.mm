@@ -190,7 +190,8 @@ enum {
 	[menu alignItemsVertically];
 	
 	CGSize size = [[CCDirector sharedDirector] winSize];
-	[menu setPosition:ccp( size.width/2, size.height/2)];    
+	[menu setPosition:ccp( size.width/2, 128)];    
+        NSLog(@"%f", menu.contentSize.height);
 	[self addChild: menu z:-1];	
 }
 
